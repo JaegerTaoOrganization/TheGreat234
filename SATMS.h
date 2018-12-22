@@ -29,5 +29,5 @@ typedef struct Graph {//定义图数据类型
 
 typedef struct CloseEdge {//定义辅助数组数据类型
 	Vertextype Vexs;//图的顶点向量
-	int Lowcost[MAXNUM];//
+	int Lowcost[MAXNUM];//最短路径
 }*pCloseEdge;//定义辅助数组指针数据
