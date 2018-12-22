@@ -16,6 +16,7 @@
 #include<iostream>
 using namespace std;
 typedef bool Status;//定义函数状态数据类型
+//Status Vertex[MAXNUM];
 typedef char Vertextype[MAXNUM][MAXNUM];//定义顶点向量数据类型
 typedef int AdjMatrix[MAXNUM][MAXNUM];//定义邻接矩阵数据类型
 
