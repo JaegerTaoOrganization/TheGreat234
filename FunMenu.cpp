@@ -1,5 +1,4 @@
 #include"SATMS.h"
-
 void putBackgroundimgsky() {
 	//输出菜单背景图片
 	PIMAGE imgsky = newimage(100, 50);//初始化
@@ -10,10 +9,12 @@ void putBackgroundimgsky() {
 }
 void putBgMap() {
 	//输出地图背景
-	PIMAGE imgsky = newimage(100, 50);//初始化
-	getimage(imgsky, "D:\\Picture\\sky.jpg", 0, 0);//获取图片地址
-	putimage(0, 0, imgsky);//放置图片
-	delimage(imgsky);//释放图片指针
+	setbkcolor(WHITE);
+	PIMAGE imgBg = newimage(100, 50);//初始化
+	getimage(imgBg, "D:\\Picture\\岛屿.png", 0, 0);//获取图片地址
+	putimage(0, 0,800,605, imgBg,0,0,852,746);//放置图片
+	delimage(imgBg);//释放图片指针
+	putFunMenu();
 }
 void putMenu() {
 	//菜单的输出
@@ -32,13 +33,25 @@ void putMenu() {
 	strcpy(f.lfFaceName, a);
 	setfont(&f);
 	outtextxy(280, 160, "创建景区景点分布图");//x:280-415,y:160-195
-	outtextxy(280, 200, "输出景区景点分布图");//x:280-415,y:200-235
-	outtextxy(280, 240, "输出导游路线图");//x:280-385,y:240-275
-	outtextxy(280, 280, "判断导游线路图有无回路");//x:280-445,y:280-315
-	outtextxy(280, 320, "求两个景点之间的最短距离");//x:280-460,y:320-355
-	outtextxy(280, 360, "输出道路修建规划图");//x:280-415,y:360-395
-	outtextxy(280, 400, "退出程序");//x:280-340,y:400-435
+	outtextxy(280, 200, "关于我们");//x:280-415,y:200-235
+	//outtextxy(280, 240, "输出导游路线图");//x:280-385,y:240-275
+	//outtextxy(280, 280, "判断导游线路图有无回路");//x:280-445,y:280-315
+	//outtextxy(280, 320, "求两个景点之间的最短距离");//x:280-460,y:320-355
+	//outtextxy(280, 360, "输出道路修建规划图");//x:280-415,y:360-395
+	outtextxy(280, 240, "退出程序");//x:280-340,y:400-435
 }
+void putFunMenu() {
+	setcolor(BLACK);
+	setfont(25, 12, "华文琥珀");
+	outtextxy(820, 10, "景区管理界面");
+	setfont(15, 7, "黑体");
+	outtextxy(815, 40, "可点击的功能选项：");
+	outtextxy(820, 70,  "创建景区景点");
+	outtextxy(820, 100, "创建道路");
+	outtextxy(820, 130, "输出导游路线图");
+	outtextxy(820, 230, "返回");
+}
+
 int input() {
 	//从键盘读入数字字符，返回该数字int型
 	setcolor(BLACK);
@@ -61,7 +74,7 @@ int input() {
 int inputInfoX() {
 	char str[100];
 	inputbox_getline("创建景点",
-		"请输入该景点的X坐标：",
+		"请输入该景点的X坐标(0-800)：",
 		str,
 		sizeof(str) / sizeof(*str));
 	return atoi(str);
@@ -69,59 +82,14 @@ int inputInfoX() {
 int inputInfoY() {
 	char str[100];
 	inputbox_getline("创建景点",
-		"请输入该景点的Y坐标：",
+		"请输入该景点的Y坐标(0-550)：",
 		str,
 		sizeof(str) / sizeof(*str));
 	return atoi(str);
 }
-int Mouse() {//点击功能模块，返回其对应序号
-	mouse_msg msg = { 0 };
-	for (; is_run(); delay_fps(60))
-	{
-		//获取鼠标消息，这个函数会等待，等待到有消息为止
-		//类似地，有和kbhit功能相近的函数MouseHit，用于检测有没有鼠标消息
-		int X, Y;
-		while (mousemsg())
-		{
-			msg = getmouse();
-		}
-		//格式化输出为字符串，用于后面输出
-		//msg和flag常数请参考文档或者mouse_msg_e, mouse_flag_e的声明
-		/*xyprintf(0, 0, "x = %10d  y = %10d",
-		msg.x, msg.y, msg.wheel);
-		xyprintf(0, 20, "move  = %d down  = %d up    = %d",
-		(int)msg.is_move(),
-		(int)msg.is_down(),
-		(int)msg.is_up());
-		xyprintf(0, 40, "left  = %d mid   = %d right = %d",
-		(int)msg.is_left(),
-		(int)msg.is_mid(),
-		(int)msg.is_right());
-		xyprintf(0, 60, "wheel = %d  wheel rotate = %d",
-		(int)msg.is_wheel(),
-		msg.wheel);*/
-		mousepos(&X, &Y);
-		if (X >= 280 && X <= 415 && Y >= 160 && Y <= 195 && msg.is_left()) {
-			return 1;
-		}
-		else if (X >= 280 && X <= 415 && Y >= 200 && Y <= 235 && msg.is_left()) {
-			return 2;
-		}
-		else if (X >= 280 && X <= 385 && Y >= 240 && Y <= 275 && msg.is_left()) {
-			return 3;
-		}
-		else if (X >= 280 && X <= 445 && Y >= 280 && Y <= 315 && msg.is_left()) {
-			return 4;
-		}
-		else if (X >= 280 && X <= 460 && Y >= 320 && Y <= 355 && msg.is_left()) {
-			return 5;
-		}
-		else if (X >= 280 && X <= 415 && Y >= 360 && Y <= 395 && msg.is_left()) {
-			return 6;
-		}
-		else if (X >= 280 && X <= 340 && Y >= 400 && Y <= 435 && msg.is_left()) {
-			return 0;
-		}
-	}
-	return 0;
+
+void putline(int a, int b, int c, int d) {
+	setcolor(GREEN);
+	setlinestyle(DASHED_LINE, NULL, 6);
+	line(a, b, c, d);
 }
