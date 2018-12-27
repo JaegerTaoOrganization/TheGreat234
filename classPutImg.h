@@ -19,21 +19,37 @@ putImg::putImg(int xx,int yy){
 	x = xx; y = yy;
 	n++;
 	PIMAGE imgsky = newimage(100, 50);//初始化
-	switch (n)
-	{
-	case 1:getimage(imgsky, "D:\\Picture\\cat.jpg", 50, 50);//获取图片地址
-		putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
-		break;
-	case 2:getimage(imgsky, "D:\\Picture\\sky.jpg", 50, 50);//获取图片地址
-		putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
-		break;
-	case 3:getimage(imgsky, "D:\\Picture\\sky.jpg", 50, 50);//获取图片地址
-		break;
-	case 4:getimage(imgsky, "D:\\Picture\\sky.jpg", 50, 50);//获取图片地址
-		break;
-	default:
-		break;
-	}
+	getimage(imgsky, "D:\\Picture\\图标3.png", 50, 50);//获取图片地址
+	putimage_alphatransparent(NULL,imgsky,x,y,BLACK,0xFF);//放置图片
+	//switch (n)
+	//{
+	//case 1:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 2:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 3:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 4:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 5:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 6:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 7:getimage(imgsky, "D:\\Picture\\图标2.png", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//case 8:getimage(imgsky, "D:\\Picture\\sky.jpg", 50, 50);//获取图片地址
+	//	putimage(x, y, 50, 50, imgsky, 0, 0, 585, 720);//放置图片
+	//	break;
+	//default:
+	//	break;
+	//}
 	delimage(imgsky);//释放图片指针
 }
 putImg::putImg(putImg &p) {
